@@ -7,14 +7,16 @@ service: landing-sdk-api
 
 provider:
   name: aws
-  runtime: python3.12
+  runtime: python3.11
   apiGateway:
     binaryMediaTypes:
       - 'multipart/form-data'
+      - 'application/json'
 
 functions:
   segmentation:
     handler: handler.segmentation_handler
+    timeout: 30
     events:
       - httpApi:
           path: /segmentation
@@ -24,3 +26,11 @@ functions:
 
 plugins:
   - serverless-apigw-binary
+  - serverless-offline
+
+package:
+  individually: true
+  include:
+    - package/**
+    - handler.py
+    - lib

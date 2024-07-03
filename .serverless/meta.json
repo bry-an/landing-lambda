@@ -6,7 +6,9 @@
     "composeOrgName": null,
     "composeServiceName": null,
     "command": [],
-    "options": {},
+    "options": {
+      "version": true
+    },
     "error": null,
     "machineId": "bb17235e257b9373bdae3e82655bf32b",
     "serviceProviderAwsCfStackId": null,
@@ -14,5 +16,129 @@
     "serviceProviderAwsCfStackUpdated": null,
     "serviceProviderAwsCfStackStatus": null,
     "serviceProviderAwsCfStackOutputs": null
+  },
+  "/home/bry/codes/lymeDetector/code/lambda": {
+    "versionSfCore": null,
+    "versionFramework": "4.1.7",
+    "isWithinCompose": false,
+    "isCompose": false,
+    "composeOrgName": null,
+    "composeResolverProviders": {},
+    "composeServiceName": null,
+    "servicePath": "/home/bry/codes/lymeDetector/code/lambda",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "org": "bbyunis",
+      "app": "lymeid",
+      "service": "landing-sdk-api",
+      "provider": {
+        "name": "aws",
+        "runtime": "python3.11",
+        "apiGateway": {
+          "binaryMediaTypes": [
+            "multipart/form-data",
+            "application/json"
+          ]
+        },
+        "stage": "dev",
+        "region": "us-east-1",
+        "versionFunctions": true
+      },
+      "functions": {
+        "segmentation": {
+          "handler": "handler.segmentation_handler",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/segmentation",
+                "method": "post",
+                "cors": true,
+                "contentHandling": "CONVERT_TO_BINARY"
+              }
+            }
+          ]
+        }
+      },
+      "plugins": [
+        "serverless-apigw-binary",
+        "serverless-offline"
+      ],
+      "package": {
+        "individually": true,
+        "include": [
+          "package/**",
+          "handler.py",
+          "lib"
+        ]
+      }
+    },
+    "serviceRawFile": "# \"org\" ensures this Service is used with the correct Serverless Framework Access Key.\norg: bbyunis\n# \"app\" enables Serverless Framework Dashboard features and sharing them with other Services.\napp: lymeid\n# \"service\" is the name of this project. This will also be added to your AWS resource names.\nservice: landing-sdk-api\n\nprovider:\n  name: aws\n  runtime: python3.11\n  apiGateway:\n    binaryMediaTypes:\n      - 'multipart/form-data'\n      - 'application/json'\n\nfunctions:\n  segmentation:\n    handler: handler.segmentation_handler\n    events:\n      - httpApi:\n          path: /segmentation\n          method: post\n          cors: true\n          contentHandling: CONVERT_TO_BINARY\n\nplugins:\n  - serverless-apigw-binary\n  - serverless-offline\n\npackage:\n  individually: true\n  include:\n    - package/**\n    - handler.py\n    - lib\n",
+    "command": [
+      "offlen"
+    ],
+    "options": {},
+    "error": {
+      "message": "Serverless command \"offlen\" not found. Did you mean \"offline\"? Run \"serverless help\" for a list of all available commands.",
+      "code": "UNRECOGNIZED_CLI_COMMAND"
+    },
+    "params": {},
+    "machineId": "bb17235e257b9373bdae3e82655bf32b",
+    "accessKeyV2": "<REDACTED>",
+    "accessKeyV1": "<REDACTED>",
+    "orgId": "021c2c3d-88ee-451e-a565-2f7658b7cb96",
+    "orgName": "bbyunis",
+    "userId": "1t0B0bymsJwPHK1Qrh",
+    "dashboard": {
+      "isEnabledForService": true,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": {
+        "providers": true,
+        "monitoring": false
+      },
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": "HcpgWm7MsKyLbCKm64",
+      "serviceProvider": {
+        "accessKeyId": "<REDACTED>",
+        "secretAccessKey": "<REDACTED>",
+        "sessionToken": "<REDACTED>"
+      },
+      "instanceParameters": null
+    },
+    "userName": "bbyunis",
+    "subscription": null,
+    "userEmail": "bbyunis@gmail.com",
+    "serviceProviderAwsCredentials": "<REDACTED>",
+    "serviceProviderAwsAccountId": "113059619418",
+    "versionSf": "4.1.7",
+    "serviceProviderAwsCfStackName": "landing-sdk-api-dev",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:113059619418:stack/landing-sdk-api-dev/da75d190-3676-11ef-b113-0affca4126ff",
+    "serviceProviderAwsCfStackCreated": "2024-06-30T00:22:37.176Z",
+    "serviceProviderAwsCfStackUpdated": "2024-06-30T00:23:26.507Z",
+    "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
+    "serviceProviderAwsCfStackOutputs": [
+      {
+        "OutputKey": "HelloLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:113059619418:function:landing-sdk-api-dev-hello:1",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-landing-sdk-api-dev-HelloLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "HttpApiId",
+        "OutputValue": "8ltbtphcvi",
+        "Description": "Id of the HTTP API",
+        "ExportName": "sls-landing-sdk-api-dev-HttpApiId"
+      },
+      {
+        "OutputKey": "ServerlessDeploymentBucketName",
+        "OutputValue": "landing-sdk-api-dev-serverlessdeploymentbucket-whxggterxldz",
+        "ExportName": "sls-landing-sdk-api-dev-ServerlessDeploymentBucketName"
+      },
+      {
+        "OutputKey": "HttpApiUrl",
+        "OutputValue": "https://8ltbtphcvi.execute-api.us-east-1.amazonaws.com",
+        "Description": "URL of the HTTP API",
+        "ExportName": "sls-landing-sdk-api-dev-HttpApiUrl"
+      }
+    ]
   }
 }

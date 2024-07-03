@@ -12,9 +12,13 @@ lib64/
 parts/
 sdist/
 var/
+package/
 *.egg-info/
 .installed.cfg
 *.egg
 
 # Serverless directories
 .serverless
+node_modules
+__pycache__/
+venv/

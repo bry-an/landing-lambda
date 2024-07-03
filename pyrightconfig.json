@@ -1,0 +1,6 @@
+{
+    "exclude": ["**/venv"],
+    "reportGeneralTypeIssues": {
+        "ignore": ["./lib/segmentation.py"]
+    }
+}

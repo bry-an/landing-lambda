@@ -1,2 +1,2 @@
-landingai
+landingai~=0.3.0
 requests_toolbelt
