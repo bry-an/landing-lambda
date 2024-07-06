@@ -21,8 +21,13 @@ functions:
       - httpApi:
           path: /segmentation
           method: post
-          cors: true
-          contentHandling: CONVERT_TO_BINARY
+  classification:
+    handler: handler.classification_handler
+    timeout: 30
+    events:
+      - httpApi:
+          path: /classification
+          method: post
 
 plugins:
   - serverless-apigw-binary
