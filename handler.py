@@ -58,6 +58,7 @@ def segmentation_handler(event, context):
             'predictions': ('prediction.json', json.dumps(prediction), 'application/json'),
             'image': ('segmentation_result_overlay.jpeg', image_io, 'image/jpeg')
         }
+        print('segmentation prediction', json.dumps(prediction))
 
         m = encoder.MultipartEncoder(fields)
 

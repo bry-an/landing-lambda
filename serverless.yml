@@ -1,41 +1,43 @@
 # "org" ensures this Service is used with the correct Serverless Framework Access Key.
 org: bbyunis
 # "app" enables Serverless Framework Dashboard features and sharing them with other Services.
-app: lymeid
-# "service" is the name of this project. This will also be added to your AWS resource names.
+app: lymeid # "service" is the name of this project. This will also be added to your AWS resource names.
 service: landing-sdk-api
 
 provider:
   name: aws
   runtime: python3.11
+  ecr:
+    images:
+      segmentationimage:
+        path: ./
+        file: Dockerfile-segmentation
+      classificationimage:
+        path: ./
+        file: Dockerfile-classification
   apiGateway:
     binaryMediaTypes:
       - 'multipart/form-data'
       - 'application/json'
+      - 'application/octet-stream'
 
 functions:
   segmentation:
-    handler: handler.segmentation_handler
+    image:
+      name: segmentationimage
     timeout: 30
     events:
-      - httpApi:
+      - http:
           path: /segmentation
           method: post
   classification:
-    handler: handler.classification_handler
+    image:
+      name: classificationimage
     timeout: 30
     events:
-      - httpApi:
+      - http:
           path: /classification
           method: post
 
 plugins:
-  - serverless-apigw-binary
   - serverless-offline
-
-package:
-  individually: true
-  include:
-    - package/**
-    - handler.py
-    - lib
