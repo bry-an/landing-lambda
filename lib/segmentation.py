@@ -6,7 +6,7 @@ def get_segmentation(image, api_key, endpoint_id):
     predictions = predictor.predict(image)
 
     if len(predictions) == 0:
-        return (image, {})
+        return ({}, image)
 
     primary_prediction = predictions[0]
     bounding_boxes = primary_prediction.bboxes
